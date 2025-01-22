@@ -1,9 +1,9 @@
 import React from 'react';
 import './planning.css';
 
-const App = () => {
+const Planning = () => {
   return (
-    <div className="app-container">
+    <div className="planning-container">
       <header className="header">
         <div className="logo">
           <span className="logo-text">STYLEME</span>
@@ -122,6 +122,6 @@ const App = () => {
   );
 };
 
-export default App;
+export default Planning;
 
 
