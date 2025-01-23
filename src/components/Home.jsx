@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import { firstImage, checkbg, NorthEastArrow } from '../../utils'
 
 function Home() {
@@ -41,6 +42,22 @@ function Home() {
 
 
         </section> */}
+=======
+// import {  } from '../../utils'
+import Hero from './Home/Hero'
+import Features from './Home/Features'
+
+function Home() {
+  return (
+    // <div></div>
+    <>
+      <div className='w-full bg-black h-content max-w-full '>
+      
+
+        <Hero/>
+
+        <Features/>
+>>>>>>> 9dc212f59c152e083e72be7a0e644ec9d475c653
 
             </div>
 
