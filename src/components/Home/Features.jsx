@@ -14,7 +14,7 @@ const Features = () => {
 
     <h2 className='text-center text-6xl my-10 w-full '>Features</h2>
 
-        <div className='w-full'>
+        <div className='w-full flex items-center'>
 
 
             <div className='w-[50%] text-3xl flex flex-col mt-10'>
