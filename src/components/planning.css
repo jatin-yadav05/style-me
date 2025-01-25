@@ -1,0 +1,311 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a;
+    color: #eee;
+    line-height: 1.6;
+  }
+  
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 100vw;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #222;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .logo-text,
+  .footer-logo-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .nav {
+    display: flex;
+  }
+  
+  .nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #999;
+    transition: color 0.3s;
+    font-size: 20px;
+  }
+  
+  .nav a:hover {
+    color: #fff;
+  }
+  
+  .auth-buttons {
+    display: flex;
+  }
+  
+  .auth-buttons a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #999;
+    padding: 8px 16px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  
+  .auth-buttons a:hover {
+    background-color: #eee;
+    color: #333;
+    border-color: #eee;
+  }
+  
+  .pricing-section {
+    text-align: center;
+    background: linear-gradient(to bottom, #282c34, #1a1a1a);
+  }
+  
+  .pricing-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .pricing-description {
+    color: #bbb;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+  }
+  
+  .billing-toggle {
+    display: inline-flex;
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 20px;
+  }
+  
+  .billing-toggle button {
+    background-color: transparent;
+    color: #aaa;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    min-width: 120px;
+  }
+  
+  .billing-toggle button.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .billing-toggle button:not(.active):hover {
+      background-color: #444;
+      color: #ddd;
+  }
+  
+  .pricing-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    max-width: 1200px;
+    margin-top:20px ;
+    margin-left: 20px;
+  
+  }
+  
+  .pricing-card {
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    text-align: left;
+    flex: 1;
+    min-width: 300px;
+    background-color: #252525;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); 
+  }
+  
+  .free-card {
+    border-top: 4px solid #00c853;
+  }
+  
+  .pro-card {
+    border-top: 4px solid #ffc107;
+  }
+  
+  .enterprise-card {
+    border-top: 4px solid #007bff;
+  }
+  
+  .pricing-card h2 {
+    margin-top: 0;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 1px;
+  }
+  
+  .pricing-card .price {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .pricing-card .billing {
+    color: #aaa;
+  }
+  
+  .pricing-card .card-content p {
+    color: #ddd;
+  }
+  
+  .pricing-card ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+    flex-grow: 1;
+  }
+  
+  .pricing-card li {
+    color: #bbb;
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .pricing-card li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #007bff;
+  }
+  
+  .get-started-button,
+  .upgrade-button,
+  .start-enterprise-button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: auto;
+  }
+  .get-started-button{
+    margin-top: 50px;
+  }
+  
+  .get-started-button:hover,
+  .upgrade-button:hover,
+  .start-enterprise-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  
+  .footer {
+    margin-top: 20px;
+    background-color: #22262e;
+    color: #888;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-sections {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+    flex-wrap: wrap; 
+  }
+  
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 200px;
+    margin-bottom: 20px; 
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 10px;
+    color: #ddd; 
+  }
+  
+  .footer-section a,
+  .footer-section p {
+    color: #999;
+    text-decoration: none;
+    margin-top: 5px;
+    transition: color 0.3s; 
+  }
+  
+  .footer-section a:hover {
+    color: #fff;
+  }
+  .copyright{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto 0;
+      flex-wrap: wrap;
+  }
+  .copyright p{
+      color: #999;
+  }
+  @media (max-width: 768px) {
+    .pricing-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+    .pricing-card {
+      width: 100%;
+      max-width: 400px;
+    }
+      .footer-sections {
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-section {
+      text-align: center;
+      align-items: center;
+    }
+    .copyright{
+      flex-direction: column;
+      align-items: center;
+    }
+  }

@@ -1,0 +1,23 @@
+import React from 'react'
+// import {  } from '../../utils'
+import Hero from './Home/Hero'
+import Features from './Home/Features'
+
+function Home() {
+    return (
+        <>
+            <div className='w-full bg-black h-content max-w-full '>
+
+
+                <Hero />
+
+                <Features />
+
+            </div>
+
+        </>
+
+    )
+}
+
+export default Home
