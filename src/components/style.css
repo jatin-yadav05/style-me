@@ -16,14 +16,14 @@ align-items: center;
     
     min-width:400px;
     width:30%;
-    height: 80vh;
+    height: 82vh;
     border-radius:15px;
     background-color: #2C2638;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-h1{
+.h1{
     font-size: 2.2rem;
     margin-top:10px;
    border-bottom: 3px solid #fff;
