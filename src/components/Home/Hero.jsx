@@ -9,7 +9,7 @@ const Hero = () => {
   <div className='h-full w-[55%] text-white flex flex-col pt-20 gap-16 items-start '>
   <div className='text-6xl font-bold  w-[120%] relative  left-[15%] z-20 '>
       Create Your Own <span className='text-white'>Uni</span><span className='text-black'>que</span> 
-      <span className='text-grey'> Clothing  Designs</span>
+      <span className='text-grey'> Clothing  Designs  </span>
      <span className='text-white'>Tod</span><span className='text-black'>ay</span>
     </div>
 
