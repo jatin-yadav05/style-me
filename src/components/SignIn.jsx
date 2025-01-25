@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios'
 import { registerRoutes } from '../../utils/userApi'
 import { Link } from 'react-router-dom'
+import { useGoogleLogin } from '@react-oauth/google'
+import { googleAuth } from '../../utils/userApi'
 function SignIn() {
   const [typePassword, setTypePassword] = useState(true)
   const [username, setUsername] = useState("");
@@ -41,6 +43,24 @@ function SignIn() {
     return true;
 
   }
+  const responseGoogle=async(authResult)=>{
+        try{
+          if(authResult['code']){
+    
+            const result=await googleAuth(authResult['code'])
+            const {email,username,picture}=result.data.user
+            console.log(result)
+          }
+        
+        }catch(e){
+          console.error("Error occurs"+e);
+        }
+  }
+const GoogleSign=useGoogleLogin({
+  onSuccess:responseGoogle,
+  onError:responseGoogle,
+  flow:"auth-code"
+})
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -86,7 +106,7 @@ function SignIn() {
             <div className="mt-6 flex flex-col items-center">
               <button
                 className="flex items-center justify-center w-80 bg-white text-black text-lg font-medium border border-gray-300 rounded-lg p-3 shadow hover:shadow-md transition-all"
-                onClick={() => console.log('Google Login')}
+                onClick={() =>GoogleSign()}
               >
                 <img
                   src="/icons/google.jpeg"
