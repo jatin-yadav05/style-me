@@ -2,11 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { Currency } from 'lucide-react';
 import { orderPayment } from '../../utils/userApi';
-import { useState } from 'react';
-function Razorpay() {
-    let [responseid,setResponseId]=useState("");
-    let [responseState,setResponseState]=useState([]);
-    const loadScript = (src) => {
+
+const loadScript = (src) => {
         return new Promise((resolve, reject) => {
           const script = document.createElement('script');
           script.src = src;
@@ -24,7 +21,7 @@ function Razorpay() {
         });
       };
       
-    const createRazorpay=(amount)=>{
+   export const createRazorpay=(amount,navigate)=>{
         let data=JSON.stringify({
             amount:amount*100,
             currency:"INR"
@@ -41,12 +38,12 @@ function Razorpay() {
         }
         axios.request(config).then((response)=>{
             console.log(JSON.stringify(response.data))
-            handleRazorpayScreen(response.data.amount)
+            handleRazorpayScreen(response.data.amount,navigate)
         }).catch((e)=>{
             console.log(e);
         })
     }
-    const handleRazorpayScreen=async (amount)=>{
+    const handleRazorpayScreen=async (amount,navigate)=>{
          const res=await loadScript("https:/checkout.razorpay.com/v1/checkout.js");
         if(!res){
             alert("some error at razorpay screen")
@@ -59,14 +56,16 @@ function Razorpay() {
             name:"Style-me",
             description:"payment to style-me",
             handler:function(response){
-                setResponseId(response.razorpay_payment_id)
+                // setResponseId(response.razorpay_payment_id),
+             
+                navigate('/')  
             },
             prefill:{
                 name:"Herish",
                 email:"herishgarg@gmail.com"
             },
             theme:{
-                color:"#F4C430"
+                color:"#000"
             }
         }
         const paymentObject=new window.Razorpay(options);
@@ -81,18 +80,4 @@ await axios.get(`http://localhost:4444/api/auth/payment/${passwordId}`).then((re
 }).catch((e)=>{
     console.log(e)
 })
-    }
-  return ( 
-    <div className='bg-white text-black flex flex-col items-center'>
-<button onClick={()=>createRazorpay(100)} className='border mt-2'>Payment of 100rs</button>
-{responseid &&<p>{responseid}</p>}
-<h1>This is payment verifiaction form</h1>
-<form onSubmit={fetchPayment}>
-    <input type="text" name="paymentId"/>
-    <button type="submit" className='border '>Fetch Payment</button>
-</form>
-    </div>
-  )
 }
-
-export default Razorpay

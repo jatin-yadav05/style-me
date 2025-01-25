@@ -88,7 +88,7 @@ const GoogleSign=useGoogleLogin({
     <>
       <div className="parent-container">
         <div className='child-container'>
-          <h1>CREATE ACCOUNT</h1>
+          <h1 className='h1'>CREATE ACCOUNT</h1>
           <div>
             <form onSubmit={(e) => handleSubmit(e)}>
               <Input placeholder="Username" type="text" className="mt-5" value={username} onChange={(e) => setUsername(e.target.value)} />
