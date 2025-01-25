@@ -5,7 +5,6 @@ import Features from './Home/Features'
 
 function Home() {
     return (
-        // <div></div>
         <>
             <div className='w-full bg-black h-content max-w-full '>
 
