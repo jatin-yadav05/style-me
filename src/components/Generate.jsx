@@ -45,7 +45,7 @@ const PATTERNS = [
 
 // Add this loader component at the top of your file
 const GarmentLoader = ({ progress }) => (
-  <div className="absolute inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-50">
+  <div className="absolute inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-20">
     <div className="flex flex-col items-center">
       {/* DNA Helix Animation */}
       <div className="relative w-24 h-24 mb-6">
@@ -635,7 +635,7 @@ function Generate() {
     return (
       <div className='bg-black w-full h-screen text-white p-8 relative'>
         {/* Step Indicator */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-zinc-900/90 px-6 py-3 rounded-full border border-zinc-800 backdrop-blur-sm z-50 shadow-xl">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-zinc-900/90 px-6 py-3 rounded-full border border-zinc-800 backdrop-blur-sm z-20 shadow-xl">
           <div className={`flex items-center text-zinc-500`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center border border-zinc-700`}>
               1
@@ -715,7 +715,7 @@ function Generate() {
 
                 {/* Model Selector Modal */}
                 {showModelSelector && (
-                  <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                  <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-20 flex items-center justify-center p-4">
                     <div className="bg-zinc-900 rounded-xl border border-zinc-800 w-full max-w-4xl max-h-[80vh] overflow-hidden">
                       <div className="p-4 border-b border-zinc-800 flex justify-between items-center">
                         <h3 className="text-lg font-semibold text-zinc-200">Select a Model</h3>
@@ -899,7 +899,7 @@ function Generate() {
   return (
     <div className='bg-black w-full h-screen text-white p-4 font-jakarta relative'>
       {/* Step Indicator - Updated positioning and z-index */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-zinc-900/90 px-6 py-3 rounded-full border border-zinc-800 backdrop-blur-sm z-50 shadow-xl">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-zinc-900/90 px-6 py-3 rounded-full border border-zinc-800 backdrop-blur-sm z-20 shadow-xl">
         <div className={`flex items-center ${currentStep === 'design' ? 'text-white' : 'text-zinc-500'}`}>
           <div className={`w-8 h-8 rounded-full flex items-center justify-center border ${currentStep === 'design' ? 'border-white bg-white/10' : 'border-zinc-700'
             }`}>1</div>
@@ -965,7 +965,7 @@ function Generate() {
 
               {/* Model Selector Modal */}
               {showModelSelector && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-20 flex items-center justify-center p-4">
                   <div className="bg-zinc-900 rounded-xl border border-zinc-800 w-full max-w-4xl max-h-[80vh] overflow-hidden">
                     <div className="p-4 border-b border-zinc-800 flex justify-between items-center">
                       <h3 className="text-lg font-semibold text-zinc-200">Select a Model</h3>

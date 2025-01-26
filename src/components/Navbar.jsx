@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,41 +23,44 @@ const Navbar = () => {
     { name: 'Dashboard', path: '/dashboard' },
   ];
 
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
+  const isActive = (path) => location.pathname === path;
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-transparent'
+      className={`fixed top-0 z-50 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'bg-black/80 backdrop-blur-2xl border-b border-white/[0.08]' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-white font-bold text-xl">StyleMe</span>
+            <span className="text-white font-semibold text-lg tracking-tight">StyleMe</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'text-white'
-                    : 'text-zinc-400 hover:text-white'
+                className={`relative text-base font-medium transition-colors group ${
+                  isActive(link.path) ? 'text-white' : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 {link.name}
+                {isActive(link.path) && (
+                  <motion.div 
+                    layoutId="navbar-indicator"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-white"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
               </Link>
             ))}
             
             {/* Auth Buttons */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-4 ml-4 pl-4 border-l border-white/[0.08]">
               <Link
                 to="/login"
                 className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
@@ -65,66 +69,77 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/signin"
-                className="text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-zinc-200 transition-colors"
+                className="group relative px-4 py-1.5 text-sm font-medium transition-all"
               >
-                Get Started
+                <span className="relative z-10 flex items-center gap-1 text-black transition-colors duration-300 group-hover:text-white">
+                  Get Started
+                  <ChevronRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </span>
+                <div className="absolute inset-0 bg-white rounded-full transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/20 border border-transparent" />
               </Link>
             </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-zinc-400 hover:text-white"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-colors"
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
+          </motion.button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-lg">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  isActive(link.path)
-                    ? 'text-white bg-zinc-900'
-                    : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="flex flex-col space-y-2 px-3 py-2">
-              <Link
-                to="/login"
-                className="text-zinc-400 hover:text-white transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/signin"
-                className="bg-white text-black px-4 py-2 rounded-full hover:bg-zinc-200 transition-colors text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Get Started
-              </Link>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden border-t border-white/[0.08] bg-black/95 backdrop-blur-xl"
+          >
+            <div className="px-4 py-3 space-y-3">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive(link.path)
+                      ? 'bg-white/[0.06] text-white'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/[0.03]'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div className="grid gap-2 px-3 pt-3 border-t border-white/[0.08]">
+                <Link
+                  to="/login"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-zinc-400 hover:text-white transition-colors py-2"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/signin"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="bg-white text-black hover:bg-white/90 transition-colors px-4 py-2 rounded-lg text-center font-medium"
+                >
+                  Get Started
+                </Link>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

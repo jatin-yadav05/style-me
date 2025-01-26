@@ -103,9 +103,6 @@ const Pricing = () => {
             >
               {plan.highlighted && (
                 <>
-                  {/* Glow effect */}
-                  <div className="absolute -inset-[1px] bg-gradient-to-r from-white/5 via-white/10 to-white/5 rounded-2xl blur-sm opacity-40" />
-                  
                   {/* Popular badge */}
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                     <div className="relative">
@@ -150,7 +147,11 @@ const Pricing = () => {
                 onClick={() => {
                   if (plan.name === "Pro") {
                     createRazorpay(isAnnual ? 1099 : 99, navigate);
-                  }
+                  }else if(plan.name === "Free"){
+                    navigate('/signin')
+                  }else if(plan.name === "Enterprise"){
+                    navigate('/contact')
+                  } 
                 }}
                 className={`w-full py-2.5 px-4 rounded-xl text-sm font-medium transition-colors ${
                   plan.highlighted

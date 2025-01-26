@@ -5,10 +5,10 @@ import { AiOutlineLock, AiOutlineMail, AiFillUnlock } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios'
-import { loginRoutes } from '../../utils/userApi'
+import { loginRoutes } from '../utils/userApi'
 import { Link } from 'react-router-dom'
 import {useGoogleLogin} from '@react-oauth/google'
-import { googleAuth } from '../../utils/userApi'
+import { googleAuth } from '../utils/userApi' 
 function Login() {
   const [typePassword, setTypePassword] = useState(true)
   const [email, setEmail] = useState("");
