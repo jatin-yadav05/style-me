@@ -7,6 +7,7 @@ import Pricing from './components/Pricing'
 import SignIn from "./components/SignIn"
 import {GoogleOAuthProvider} from '@react-oauth/google'
 function App() {
+
   useEffect(() => {
     document.documentElement.classList.add('dark')
   }, [])

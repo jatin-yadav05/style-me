@@ -563,17 +563,17 @@ function Generate() {
       {
         id: 'm1',
         name: 'Male Model 1',
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=700&fit=crop'
+        image: 'src/assets/images/home/male-model-1.jpg'
       },
       {
         id: 'm2',
         name: 'Male Model 2',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=700&fit=crop'
+        image: 'src/assets/images/home/male-model-2.jpg'
       },
       {
         id: 'm3',
         name: 'Male Model 3',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop'
+        image: 'src/assets/images/home/male-model-3.jpeg'
       }
     ]
   };
