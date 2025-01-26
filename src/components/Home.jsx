@@ -8,6 +8,7 @@ import Customer from './Home/Customer'
 import StyleNow from './Home/StyleNow'
 import Footer from './Footer'
 
+
 function Home() {
     return (
         <div className='w-full bg-black min-h-screen overflow-x-hidden'>

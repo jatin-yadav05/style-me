@@ -124,6 +124,12 @@
       opacity: 0;
     }
   }
+
+  /* Navbar backdrop blur */
+  .backdrop-blur-navbar {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
 }
 
 /* Add responsive breakpoints */

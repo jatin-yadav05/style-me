@@ -1,49 +1,102 @@
-import React from 'react'
-import {checkbg} from '../../utils/index'
-import Prompt from './Prompt.jsx'
-import Fabric from './Fabric.jsx'
-import GenderSelection from './GenderSelection.jsx'
-import OwnModal from './OwnModal.jsx'
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Prompt from './Prompt.jsx';
+import Fabric from './Fabric.jsx';
+import GenderSelection from './GenderSelection.jsx';
+import OwnModal from './OwnModal.jsx';
 
-
+const features = [
+  {
+    title: "Design with Your Vision",
+    component: <Prompt />,
+    description: "Create unique designs using AI-powered prompts"
+  },
+  {
+    title: "Fabric, Size & Color Customization",
+    component: <Fabric />,
+    description: "Customize every aspect of your garment"
+  },
+  {
+    title: "Upload Your Own Models",
+    component: <OwnModal />,
+    description: "Use your personal photos for a better fit"
+  },
+  {
+    title: "Gender Selection",
+    component: <GenderSelection />,
+    description: "Tailored designs for all preferences"
+  }
+];
 
 const Features = () => {
+  const [activeFeature, setActiveFeature] = useState(0);
+
   return (
-    <>
-    <section className='relative border'>
+    <section className='relative border-t border-white/[0.08] bg-black'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20'>
+        <h2 className='text-center text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-16 tracking-tight'>
+          Features
+        </h2>
 
-    {/* <div className='h-[30vh]   absolute top-0  w-[40vw] overflow-hidden' >
-          <img src={checkbg} className='h-[600%] brightness-150 w-full object-cover'></img>
-    </div> */}
+        <div className='flex flex-col md:flex-row gap-10 min-h-[600px]'>
+          {/* Features List */}
+          <div className='w-full md:w-1/2'>
+            <ul className='space-y-2'>
+              {features.map((feature, index) => (
+                <motion.li
+                  key={index}
+                  className={`relative p-6 rounded-xl cursor-pointer transition-all duration-300 ${
+                    activeFeature === index 
+                      ? 'bg-white/[0.03] text-white' 
+                      : 'text-white/60 hover:text-white/90'
+                  }`}
+                  onHoverStart={() => setActiveFeature(index)}
+                >
+                  <div className='relative z-10'>
+                    <h3 className='text-xl md:text-2xl font-medium mb-2'>
+                      {feature.title}
+                    </h3>
+                    <p className='text-sm text-white/40'>
+                      {feature.description}
+                    </p>
+                  </div>
+                  
+                  {activeFeature === index && (
+                    <motion.div
+                      layoutId="activeFeature"
+                      className="absolute inset-0 bg-white/[0.03] rounded-xl"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 35
+                      }}
+                    />
+                  )}
+                </motion.li>
+              ))}
+            </ul>
+          </div>
 
-    <h2 className='text-center text-6xl my-10 w-full '>Features</h2>
-
-        <div className='w-full h-[80vh]  flex items-center gap-10'>
-
-
-            <div className='w-[50%] h-full text-3xl flex flex-col'>
-
-                <ul className=''>
-                    <li className='py-10 border-b border-t border-grey hover:bg-default-grey text-center'>Design with Your Vision</li>
-                    <li className='py-10 border-b border-grey hover:bg-default-grey text-center  '>Fabric, Size & Color Customization</li>
-                    <li className='py-10 border-b border-grey hover:bg-default-grey text-center'>Upload Your Own Models</li>
-                    <li className='py-10 border-b border-grey hover:bg-default-grey text-center'>Gender Selection</li>
-                </ul>
-               
-            </div>
-
-            <div className='w-[50%] h-full'>
-                {/* <Prompt/> */}
-                {/* <Fabric/> */}
-                <GenderSelection/>
-                {/* <OwnModal/> */}
-            </div>
-        
+          {/* Feature Preview */}
+          <div className='w-full md:w-1/2 relative'>
+            <AnimatePresence mode='wait'>
+              <motion.div
+                key={activeFeature}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0"
+              >
+                {features[activeFeature].component}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
-
+      </div>
     </section>
-    </>
-  )
-}
+  );
+};
 
-export default Features
+export default Features;

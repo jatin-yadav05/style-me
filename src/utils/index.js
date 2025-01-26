@@ -21,5 +21,10 @@ import application1 from '../assets/images/home/application1.jpeg';
 import application2 from '../assets/images/home/application2.jpg';
 import application3 from '../assets/images/home/application3.jpg';
 import application4 from '../assets/images/home/application4.jpg';
-
-export {checkbg, NorthEastArrow, firstImage, ownVision, fabricImg, maleModal, femaleModel, testimonialbg, manProfessional, femaleProfessional, doubleSideArrow, uploadModal, selectCategory, processing, givePrompt, garment, wardrobe, logo, chooseModal, application1, application2, application3, application4};
+import desktopView from '../assets/images/home/Desktop-view.jpg'
+import mobileView from '../assets/images/home/Mobile-view.jpg'
+import tabletView from '../assets/images/home/Tablet-view.jpg'
+import redDress from '../assets/images/home/redDress.jpg';
+import blackSuit from '../assets/images/home/blackSuit.jpg';
+import blueDress from '../assets/images/home/blueDress.jpg';
+export {checkbg, NorthEastArrow, firstImage, ownVision, fabricImg, maleModal, femaleModel, testimonialbg, manProfessional, femaleProfessional, doubleSideArrow, uploadModal, selectCategory, processing, givePrompt, garment, wardrobe, logo, chooseModal, application1, application2, application3, application4, desktopView, mobileView, tabletView , redDress, blackSuit, blueDress};

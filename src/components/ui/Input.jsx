@@ -1,20 +1,30 @@
 import React from 'react'
+import { cn } from "../../lib/utils"
 
-function Input({placeholder,className,type,children, onClick,onChange,value}) {
+const Input = React.forwardRef(({ className, type, children, onClick, ...props }, ref) => {
   return (
-    <div className={`relative flex items-center ${className}`}>
-          
-         <input
-              type={type}
-                placeholder={placeholder}
-              className={`p-3 w-80 rounded-lg bg-[#3C364C] focus:outline focus:outline-[#A297CE] ${className}`}
-              onChange={onChange}
-              value={value}
-              required
-            ></input>
-            {children && <div className="absolute  text-gray-500 right-6 top-7 text-xl" onClick={onClick}>{children}</div>}
+    <div className="relative">
+      <input
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+      {children && (
+        <div 
+          className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-white/40 hover:text-white/60 transition-colors" 
+          onClick={onClick}
+        >
+          {children}
+        </div>
+      )}
     </div>
   )
-}
+})
+
+Input.displayName = "Input"
 
 export default Input

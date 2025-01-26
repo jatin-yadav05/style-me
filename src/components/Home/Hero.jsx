@@ -23,15 +23,15 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className='flex flex-col lg:flex-row max-w-full min-h-screen relative overflow-hidden'>
+    <section className='flex flex-col lg:flex-row max-w-full h-[85vh] relative overflow-hidden'>
       {/* Ambient Background */}
       <div className='absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black opacity-50'></div>
       
       {/* Left Section */}
-      <div className='w-full lg:w-[55%] text-white flex justify-around flex-col pt-10 lg:pt-20 gap-8 lg:gap-16 px-6 lg:px-0 relative'>
-        <div className='flex flex-col gap-16 lg:gap-20'>
+      <div className='w-full lg:w-[55%] text-white flex justify-center flex-col pt-8 lg:pt-0 gap-8 lg:gap-12 px-6 lg:px-0 relative'>
+        <div className='flex flex-col gap-12 lg:gap-16'>
           {/* Animated Text */}
-          <div className='text-3xl md:text-5xl lg:text-7xl font-bold w-full lg:w-[120%] relative lg:left-[15%] z-20 tracking-tight leading-tight'>
+          <div className='text-3xl md:text-5xl lg:text-6xl font-bold w-full lg:w-[120%] relative lg:left-[15%] z-20 tracking-tight leading-tight'>
             <span ref={typedRef} className='drop-shadow-lg'></span>
           </div>
           
@@ -45,8 +45,8 @@ const Hero = () => {
         </div>
 
         {/* Background Pattern with Blur */}
-        <div className='h-[40vh] absolute bottom-0 w-full lg:w-[50vw] overflow-hidden opacity-40'>
-          <div className='absolute inset-0  z-10'></div>
+        <div className='h-[35vh] absolute bottom-0 w-full lg:w-[50vw] overflow-hidden opacity-40'>
+          <div className='absolute inset-0 z-10'></div>
           <img
             src={checkbg}
             className='h-[600%] brightness-110 w-full object-cover mix-blend-overlay blur-[1px]'
@@ -56,7 +56,7 @@ const Hero = () => {
 
         {/* CTA Button */}
         <div className='relative lg:left-[15%] z-20'>
-          <button className='group border-[1.5px] flex items-center gap-3 border-zinc-700/80 px-6 lg:px-8 py-4 lg:py-5 rounded-full font-semibold hover:border-white/80 hover:bg-white/95 hover:text-black transition-all duration-300 backdrop-blur-sm transform -translate-y-4'>
+          <button className='group border-[1.5px] flex items-center gap-3 border-zinc-700/80 px-6 lg:px-8 py-3 lg:py-4 rounded-full font-semibold hover:border-white/80 hover:bg-white/95 hover:text-black transition-all duration-300 backdrop-blur-sm transform -translate-y-4'>
             <span className='text-zinc-200 group-hover:text-black transition-colors text-base'>
               Get Started
             </span>
@@ -70,7 +70,7 @@ const Hero = () => {
       </div>
 
       {/* Right Section - Image */}
-      <div className='w-full lg:w-[45%] h-[50vh] lg:h-full mt-8 lg:mt-0'>
+      <div className='w-full lg:w-[45%] h-[45vh] lg:h-full mt-8 lg:mt-0'>
         <div className='relative h-full w-full overflow-hidden'>
           <div className='absolute inset-0 bg-gradient-to-r from-black via-black/20 to-transparent z-10'></div>
           <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 z-10'></div>
