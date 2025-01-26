@@ -4,6 +4,8 @@ let app=express();
 let mongoose=require("mongoose");
 require("dotenv").config();
 let port=process.env.PORT;
+
+const razorpay=require("razorpay");
 let user=require("./models/UserSchema");
 const userRoutes=require("./routes/userRoutes")
 //databse connection

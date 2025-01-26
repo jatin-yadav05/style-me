@@ -1,6 +1,9 @@
 const mongoose=require("mongoose");
 const bcrypt=require("bcrypt")
 const User=require("../models/UserSchema")
+const {oauth2client}=require("../utils/googleConfig")
+const jwt=require("jsonwebtoken")
+const axios=require("axios")
 module.exports.login=async(req,res,next)=>{
     const {email,password}=req.body;
     const checkEmail=await User.findOne({email});
@@ -40,4 +43,39 @@ module.exports.registeration=async(req,res,next)=>{
     }
     
     
+}
+module.exports.googleLogin=async(req,res)=>{
+    try{
+        const {code}=req.query;
+        const googleRes=await oauth2client.getToken(code);
+        oauth2client.setCredentials(googleRes.tokens)
+        const userRes=await axios.get(`https://www.googleapis.com/oauth2/v3/userinfo?alt=json&access_token=${googleRes.tokens.access_token}`)
+        const {email,name,picture}=userRes.data;
+        let checkEmail=await User.findOne({email});
+        if(!checkEmail){
+            const user=await User.create({
+                username:name,
+                email,
+                image:picture
+                   
+            })
+            const {_id}=user;
+            const token=jwt.sign({_id,email},process.env.JWT_SECRET,
+                {
+                    expiresIn:process.env.JWT_TIMEOUT
+                }
+            )
+           return res.status(200).json({
+            message:"success",
+            token,
+            user
+           })
+        }
+    }catch(e){
+        console.log(e);
+res.status(500).json({
+    message:"Internal server error "
+})
+    }
+
 }
