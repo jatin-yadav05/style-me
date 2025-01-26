@@ -8,12 +8,12 @@ const Hero = () => {
   useEffect(() => {
     const options = {
       strings: [
-        'Create Your Own <span class="text-white font-extrabold">Uni</span><span class="text-zinc-400">que</span> <span class="bg-gradient-to-r from-zinc-400 to-zinc-600 bg-clip-text text-transparent">Clothing Designs</span> <span class="text-white font-extrabold">Tod</span><span class="text-zinc-400">ay</span>'
+        'Create Your Own <span class="text-white/90 font-extrabold">Uni</span><span class="text-zinc-400/90">que</span> <span class="bg-gradient-to-r from-zinc-300 via-zinc-400 to-zinc-500 bg-clip-text text-transparent">Clothing Designs</span> <span class="text-white/90 font-extrabold">Tod</span><span class="text-zinc-400/90">ay</span>'
       ],
-      typeSpeed: 40,
-      backSpeed: 40,
+      typeSpeed: 45,
+      backSpeed: 45,
       loop: true,
-      cursorChar: '|',
+      cursorChar: '_',
       showCursor: true,
       smartBackspace: true
     };
@@ -23,46 +23,60 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className='flex flex-col lg:flex-row max-w-full min-h-screen relative'>
+    <section className='flex flex-col lg:flex-row max-w-full min-h-screen relative overflow-hidden'>
+      {/* Ambient Background */}
+      <div className='absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black opacity-50'></div>
+      
       {/* Left Section */}
-      <div className='w-full lg:w-[55%] text-white flex flex-col pt-10 lg:pt-20 gap-8 lg:gap-16 px-4 lg:px-0'>
-        {/* Animated Text */}
-        <div className='text-3xl md:text-5xl lg:text-6xl font-bold w-full lg:w-[120%] relative lg:left-[15%] z-20 tracking-tight'>
-          <span ref={typedRef}></span>
+      <div className='w-full lg:w-[55%] text-white flex justify-around flex-col pt-10 lg:pt-20 gap-8 lg:gap-16 px-6 lg:px-0 relative'>
+        <div className='flex flex-col gap-16 lg:gap-20'>
+          {/* Animated Text */}
+          <div className='text-3xl md:text-5xl lg:text-7xl font-bold w-full lg:w-[120%] relative lg:left-[15%] z-20 tracking-tight leading-tight'>
+            <span ref={typedRef} className='drop-shadow-lg'></span>
+          </div>
+          
+          {/* Description */}
+          <div className='font-medium text-base md:text-lg relative w-full lg:w-[80%] lg:left-[15%] z-20 text-zinc-300/90 leading-relaxed'>
+            Unleash your creativity and design clothing that fits you perfectly. 
+            <span className='text-zinc-400/80 block mt-2'>
+              Our platform provides a personalised experience, allowing you to visualize and adjust your designs before finalizing.
+            </span>
+          </div>
         </div>
 
-        {/* Background Pattern */}
-        <div className='h-[30vh] absolute bottom-0 w-full lg:w-[50vw] overflow-hidden opacity-60'>
-          <img 
-            src={checkbg} 
-            className='h-[600%] brightness-125 w-full object-cover mix-blend-overlay'
+        {/* Background Pattern with Blur */}
+        <div className='h-[40vh] absolute bottom-0 w-full lg:w-[50vw] overflow-hidden opacity-40'>
+          <div className='absolute inset-0  z-10'></div>
+          <img
+            src={checkbg}
+            className='h-[600%] brightness-110 w-full object-cover mix-blend-overlay blur-[1px]'
             alt="Background pattern"
           />
         </div>
 
-        {/* Description */}
-        <div className='font-medium text-sm md:text-md relative w-full lg:w-[80%] lg:left-[15%] z-20 text-zinc-300 leading-relaxed'>
-          Unleash your creativity and design clothing that fits you perfectly. Our platform provides a personalised experience, allowing you to visualize and adjust your designs before finalizing.
-        </div>
-
         {/* CTA Button */}
-        <button className='group border-2 flex items-center gap-2 border-zinc-700 px-4 lg:px-6 py-3 lg:py-4 rounded-full relative lg:left-[15%] font-semibold hover:border-white hover:bg-white hover:text-black transition-all duration-300 z-20 w-fit'>
-          <span className='text-zinc-300 group-hover:text-black transition-colors'>Get Started</span>
-          <img 
-            src={NorthEastArrow} 
-            alt="Arrow" 
-            className='w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity' 
-          />
-        </button>
+        <div className='relative lg:left-[15%] z-20'>
+          <button className='group border-[1.5px] flex items-center gap-3 border-zinc-700/80 px-6 lg:px-8 py-4 lg:py-5 rounded-full font-semibold hover:border-white/80 hover:bg-white/95 hover:text-black transition-all duration-300 backdrop-blur-sm transform -translate-y-4'>
+            <span className='text-zinc-200 group-hover:text-black transition-colors text-base'>
+              Get Started
+            </span>
+            <img
+              src={NorthEastArrow}
+              alt="Arrow"
+              className='w-4 h-4 opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5'
+            />
+          </button>
+        </div>
       </div>
 
       {/* Right Section - Image */}
       <div className='w-full lg:w-[45%] h-[50vh] lg:h-full mt-8 lg:mt-0'>
-        <div className='relative h-full w-full'>
-          <div className='absolute inset-0 bg-gradient-to-r from-black/20 to-transparent z-10'></div>
-          <img 
-            src={firstImage} 
-            className='h-full w-full object-cover brightness-90'
+        <div className='relative h-full w-full overflow-hidden'>
+          <div className='absolute inset-0 bg-gradient-to-r from-black via-black/20 to-transparent z-10'></div>
+          <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 z-10'></div>
+          <img
+            src={firstImage}
+            className='h-full w-full object-cover brightness-95 scale-105 hover:scale-100 transition-transform duration-700'
             alt="Hero image"
           />
         </div>
