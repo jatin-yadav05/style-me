@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUp, Mail, Phone, MapPin, Github, Twitter, Instagram } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { logo } from '../utils'
 
 const Footer = () => {
+  const [showBackToTop, setShowBackToTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button when scrolled past 200vh (2 * window.innerHeight)
+      setShowBackToTop(window.scrollY > 2 * window.innerHeight)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -146,12 +159,20 @@ const Footer = () => {
         </div>
 
         {/* Back to Top Button */}
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-black hover:bg-zinc-900 border border-white/[0.08] rounded-full p-3 backdrop-blur-sm transition-all duration-300 group shadow-lg hover:shadow-xl"
-        >
-          <ArrowUp className="h-5 w-5 text-white transition-transform duration-300 group-hover:-translate-y-0.5" />
-        </button>
+        <AnimatePresence>
+          {showBackToTop && (
+            <motion.button
+              onClick={scrollToTop}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.2 }}
+              className="fixed bottom-6 right-6 bg-black hover:bg-zinc-900 border border-white/[0.08] rounded-full p-3 backdrop-blur-sm transition-all duration-300 group shadow-lg hover:shadow-xl"
+            >
+              <ArrowUp className="h-5 w-5 text-white transition-transform duration-300 group-hover:-translate-y-0.5" />
+            </motion.button>
+          )}
+        </AnimatePresence>
       </div>
     </footer>
   )

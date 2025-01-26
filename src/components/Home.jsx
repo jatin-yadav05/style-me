@@ -11,7 +11,6 @@ import Footer from './Footer'
 
 function Home() {
     return (
-        // <div></div>
         <>
             <div className='w-full bg-black h-content max-w-full '>
 
@@ -26,8 +25,6 @@ function Home() {
                 <Customer/>
 
                 <StyleNow/>
-
-                <Footer/> 
 
             </div>
 

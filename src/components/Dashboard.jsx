@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import {
@@ -24,8 +24,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../components/ui/dropdown-menu';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
   const userGeneratedImages = [
     {
       id: 1,
@@ -53,8 +57,20 @@ const Dashboard = () => {
     },
   ];
 
+  const handleLogout = () => {
+    setIsLoggingOut(true);
+    navigate("/login")
+    localStorage.removeItem("Details");
+    setIsLoggingOut(false);
+  }
+
   return (
     <div className="min-h-screen bg-black">
+      {isLoggingOut && (
+        <div className="fixed top-0 left-0 w-full h-1 bg-white/10 z-50">
+          <div className="h-full bg-white animate-[loading_1.5s_ease-in-out]"></div>
+        </div>
+      )}
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-black/80 backdrop-blur-xl">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-10">
@@ -71,17 +87,17 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex items-center gap-5">
-              <Button 
-                size="icon" 
-                variant="ghost" 
+              <Button
+                size="icon"
+                variant="ghost"
                 className="rounded-full w-10 h-10 hover:bg-white/[0.06]"
               >
                 <Bell className="h-4 w-4 text-white/60" />
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className="rounded-full p-[2px] hover:bg-white/[0.06]"
                   >
                     <Avatar className="h-9 w-9 ring-2 ring-white/[0.08] hover:ring-white/20 transition-all">
@@ -90,7 +106,7 @@ const Dashboard = () => {
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent 
+                <DropdownMenuContent
                   className="w-64 mr-2 p-2 bg-black/95 backdrop-blur-xl border-white/[0.08] rounded-2xl shadow-xl"
                   align="end"
                 >
@@ -110,8 +126,12 @@ const Dashboard = () => {
                   <DropdownMenuItem className="rounded-lg hover:bg-white/[0.08]">Profile</DropdownMenuItem>
                   <DropdownMenuItem className="rounded-lg hover:bg-white/[0.08]">Settings</DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-white/[0.08] my-2" />
-                  <DropdownMenuItem className="rounded-lg text-red-400 hover:bg-white/[0.08]">
-                    Logout
+                  <DropdownMenuItem
+                    onClick={() => handleLogout()}
+                    className="rounded-lg text-red-400 hover:bg-white/[0.08]"
+                    disabled={isLoggingOut}
+                  >
+                    {isLoggingOut ? 'Logging out...' : 'Logout'}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -139,7 +159,7 @@ const Dashboard = () => {
               </div>
             </div>
           </Card>
-          
+
           <Card className="bg-white/[0.02] border-white/[0.08] rounded-2xl p-6 backdrop-blur-sm hover:bg-white/[0.04] transition-colors">
             <div className="flex justify-between items-start">
               <div>
@@ -154,7 +174,7 @@ const Dashboard = () => {
           </Card>
 
           <Card className="bg-white/[0.02] border-white/[0.08] rounded-2xl p-6 backdrop-blur-sm">
-            <Button 
+            <Button
               className="w-full bg-white hover:bg-white/90 text-black rounded-xl py-6 text-sm font-medium transition-colors"
             >
               <Plus className="h-4 w-4 mr-2" />
@@ -172,8 +192,8 @@ const Dashboard = () => {
                 You have created {userGeneratedImages.length} designs this month
               </p>
             </div>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-white/[0.08] rounded-xl hover:bg-white/[0.06] text-white/80"
             >
               <Settings className="h-4 w-4 mr-2" />
@@ -184,8 +204,8 @@ const Dashboard = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {userGeneratedImages.map((image) => (
-              <Card 
-                key={image.id} 
+              <Card
+                key={image.id}
                 className="bg-white/[0.02] border-white/[0.08] rounded-2xl overflow-hidden group backdrop-blur-sm hover:bg-white/[0.04] transition-colors"
               >
                 <div className="relative aspect-[3/2]">
@@ -211,11 +231,10 @@ const Dashboard = () => {
                           </div>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            image.status === 'Published' 
-                              ? 'bg-white/10 text-white/80' 
+                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${image.status === 'Published'
+                              ? 'bg-white/10 text-white/80'
                               : 'bg-white/[0.06] text-white/40'
-                          }`}>
+                            }`}>
                             {image.status}
                           </span>
                           <div className="flex items-center gap-2">

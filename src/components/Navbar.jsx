@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { use } from 'react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const [isLogin,setIsLogin]=useState(true);
+
+  useEffect(() => {
+    const userDetails = localStorage.getItem("Details");
+    setIsLogin(!userDetails);
+  }, [localStorage.getItem("Details")]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +34,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-50 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 z-50 left-0 right-0 transition-all duration-500 ${
         isScrolled ? 'bg-black/80 backdrop-blur-2xl border-b border-white/[0.08]' : 'bg-transparent'
       }`}
     >
@@ -40,26 +47,30 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative text-base font-medium transition-colors group ${
-                  isActive(link.path) ? 'text-white' : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                {link.name}
-                {isActive(link.path) && (
-                  <motion.div 
-                    layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-white"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
-            ))}
+            <div className="flex items-center gap-8 relative">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-base font-medium transition-colors group ${
+                    isActive(link.path) ? 'text-white' : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <motion.div 
+                className="absolute -bottom-1 h-[2px] bg-white"
+                animate={{
+                  x: isActive('/') ? 0 : isActive('/generate') ? 72 : isActive('/pricing') ? 170 : 250,
+                  width: isActive('/') ? 45 : isActive('/generate') ? 70 : isActive('/pricing') ? 55 : 85
+                }}
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            </div>
             
             {/* Auth Buttons */}
+            {isLogin && (
             <div className="flex items-center gap-4 ml-4 pl-4 border-l border-white/[0.08]">
               <Link
                 to="/login"
@@ -78,6 +89,7 @@ const Navbar = () => {
                 <div className="absolute inset-0 bg-white rounded-full transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/20 border border-transparent" />
               </Link>
             </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}

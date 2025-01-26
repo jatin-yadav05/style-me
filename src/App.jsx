@@ -8,6 +8,7 @@ import Pricing from './components/Pricing'
 import SignIn from "./components/SignIn"
 import Dashboard from "./components/Dashboard"
 import {GoogleOAuthProvider} from '@react-oauth/google'
+import PreventPages from './components/PreventPages'
 
 function App() {
   useEffect(() => {
@@ -35,7 +36,7 @@ function App() {
           <Route path="/generate" element={<Generate />} />
           <Route path="/login" element={<GoogleAuthWrapper />} />
           <Route path="/signin" element={<GoogleAuthSign />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<PreventPages><Dashboard /></PreventPages>} />
         </Routes>
       </Layout>
     </Router>

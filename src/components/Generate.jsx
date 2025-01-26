@@ -635,21 +635,19 @@ function Generate() {
     return (
       <div className='bg-black w-full h-screen text-white p-8 relative'>
         {/* Step Indicator */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-zinc-900/90 px-6 py-3 rounded-full border border-zinc-800 backdrop-blur-sm z-20 shadow-xl">
-          <div className={`flex items-center text-zinc-500`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center border border-zinc-700`}>
-              1
-            </div>
-            <span className="ml-2 text-sm font-medium">Design</span>
-          </div>
-          <div className="w-12 h-px bg-zinc-800" />
-          <div className={`flex items-center text-white`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center border border-white bg-white/10`}>
-              2
-            </div>
-            <span className="ml-2 text-sm font-medium">Try On</span>
-          </div>
+        <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-4 bg-zinc-900/90 px-2 sm:px-4 py-2 sm:py-2.5 rounded-full border border-zinc-800 backdrop-blur-sm z-20 shadow-xl ">
+        <div className={`flex items-center ${currentStep === 'design' ? 'text-white' : 'text-zinc-500'}`}>
+          <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border ${currentStep === 'design' ? 'border-white bg-white/10' : 'border-zinc-700'
+            }`}>1</div>
+          <span className="ml-1 sm:ml-2 text-xs sm:text-sm font-medium">Design</span>
         </div>
+        <div className="lg:w-4 w-2 sm:w-8 h-px bg-zinc-800" />
+        <div className={`flex items-center ${currentStep === 'tryon' ? 'text-white' : 'text-zinc-500'}`}>
+          <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border ${currentStep === 'tryon' ? 'border-white bg-white/10' : 'border-zinc-700'
+            }`}>2</div>
+          <span className="ml-1 sm:ml-2 text-xs sm:text-sm font-medium">Try On</span>
+        </div>
+      </div>
 
         {/* Main Content - Adjusted top padding */}
         <div className='max-w-[1800px] mx-auto flex flex-col pt-8'>
@@ -665,31 +663,31 @@ function Generate() {
           </div>
 
           {/* Rest of your try-on content */}
-          <div className='grid grid-cols-[1fr,2fr] gap-6 h-[calc(100vh-150px)]'>
+          <div className='grid grid-cols-1 lg:grid-cols-[1fr,2fr] gap-6 h-[calc(100vh-180px)]'>
             {/* Left Panel - Model Upload */}
             <div className='bg-zinc-900/50 rounded-xl border border-zinc-800 backdrop-blur-sm p-4'>
               <div className='flex flex-col justify-between h-full'>
-                <div>
+                <div className='mb-4 lg:mb-0'>
                   <h2 className='text-base font-semibold text-zinc-200'>Upload Model Image</h2>
                   <p className='text-xs text-zinc-400'>Upload a photo to try the design on</p>
                 </div>
 
                 {/* Upload Area */}
-                <div className='rounded-lg overflow-hidden border-2 border-dashed border-zinc-800 hover:border-zinc-700 transition-all duration-300'>
+                <div className='rounded-lg overflow-hidden border-2 border-dashed border-zinc-800 hover:border-zinc-700 transition-all duration-300 mb-6 lg:mb-0'>
                   <label className='relative block w-full cursor-pointer group'>
                     {modelImage ? (
                       <div className="relative">
                         <img
                           src={modelImage.preview}
                           alt="Uploaded model"
-                          className='w-full h-[calc(100vh-400px)] object-cover'
+                          className='w-full h-[300px] sm:h-[300px] lg:h-[calc(100vh-400px)] object-contain'
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                           <p className="text-white text-sm">Click to change image</p>
                         </div>
                       </div>
                     ) : (
-                      <div className="h-[calc(100vh-450px)] flex flex-col items-center justify-center gap-3 bg-zinc-900/50">
+                      <div className="h-[200px] sm:h-[300px] lg:h-[calc(100vh-450px)] flex flex-col items-center justify-center gap-3 bg-zinc-900/50">
                         <div className="w-16 h-16 rounded-full bg-zinc-800/50 flex items-center justify-center">
                           <Upload className="w-8 h-8 text-zinc-400" />
                         </div>
@@ -706,11 +704,11 @@ function Generate() {
                 {/* Pre-existing Models Button */}
                 <Button
                   variant="outline"
-                  className="w-full border-zinc-700 hover:bg-zinc-800 text-zinc-300 mt-3"
+                  className="w-full border-zinc-700 hover:bg-zinc-800 text-zinc-300 mt-3 mb-6 lg:mb-0"
                   onClick={() => setShowModelSelector(true)}
                 >
                   <User className="w-4 h-4 mr-2" />
-                  Select From Pre-existing Models
+                  <p className='flex' ><span className="hidden sm:block">Select From </span>Pre-existing Models</p>
                 </Button>
 
                 {/* Model Selector Modal */}
@@ -747,7 +745,7 @@ function Generate() {
                         </div>
 
                         {/* Models Grid */}
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                           {PRE_EXISTING_MODELS[selectedGender].map((model) => (
                             <div
                               key={model.id}
@@ -795,7 +793,7 @@ function Generate() {
             <div className='bg-zinc-900/30 rounded-xl border border-zinc-800 backdrop-blur-sm p-4'>
               <div className='h-full flex flex-col'>
                 <h2 className='text-base font-semibold text-zinc-200 mb-2'>Generated Design</h2>
-                <div className='flex-1 grid grid-cols-2 gap-4'>
+                <div className='flex-1 grid grid-cols-1 lg:grid-cols-2 gap-4'>
                   {/* Main Preview */}
                   <div className='flex items-center justify-center bg-zinc-900/50 rounded-lg'>
                     {generatedDesign ? (
@@ -803,7 +801,7 @@ function Generate() {
                         <img
                           src={generatedDesign.image}
                           alt="Generated design"
-                          className='max-h-[calc(100vh-220px)] w-auto object-contain'
+                          className='max-h-[300px] lg:max-h-[calc(100vh-220px)] w-auto object-contain'
                         />
                       </div>
                     ) : (
@@ -820,7 +818,7 @@ function Generate() {
                           </div>
                         </div>
 
-                        <div className='grid grid-cols-3 gap-4'>
+                        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
                           {/* Generate Option */}
                           <button
                             onClick={() => handleGenerateDesign()}
@@ -867,23 +865,23 @@ function Generate() {
                   </div>
 
                   {/* Try-on Result */}
-                  <div className='flex items-center justify-center bg-zinc-900/50 rounded-lg'>
+                  <div className='flex items-center justify-center bg-zinc-900/50 rounded-lg min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]'>
                     {loading ? (
-                      <div className='flex flex-col items-center justify-center'>
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-3" />
-                        <p className='text-sm text-zinc-400'>Processing try-on...</p>
+                      <div className='flex flex-col items-center justify-center p-4'>
+                        <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-white mb-2 sm:mb-3" />
+                        <p className='text-xs sm:text-sm text-zinc-400'>Processing try-on...</p>
                       </div>
                     ) : tryOnResult ? (
-                      <div className='w-full h-full flex items-center justify-center p-4'>
+                      <div className='w-full h-full flex items-center justify-center p-2 sm:p-4'>
                         <img
                           src={tryOnResult.url}
                           alt="Try-on Result"
-                          className='max-h-[calc(100vh-220px)] w-auto object-contain'
+                          className='max-h-[200px] sm:max-h-[300px] lg:max-h-[calc(100vh-220px)] w-auto object-contain'
                         />
                       </div>
                     ) : (
-                      <div className='text-center'>
-                        <p className='text-sm text-zinc-400'>Try-on result will appear here</p>
+                      <div className='text-center p-4'>
+                        <p className='text-xs sm:text-sm text-zinc-400'>Try-on result will appear here</p>
                       </div>
                     )}
                   </div>
@@ -899,24 +897,24 @@ function Generate() {
   return (
     <div className='bg-black w-full h-screen text-white p-4 font-jakarta relative'>
       {/* Step Indicator - Updated positioning and z-index */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-zinc-900/90 px-6 py-3 rounded-full border border-zinc-800 backdrop-blur-sm z-20 shadow-xl">
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-4 bg-zinc-900/90 px-2 sm:px-4 py-2 sm:py-2.5 rounded-full border border-zinc-800 backdrop-blur-sm z-20 shadow-xl ">
         <div className={`flex items-center ${currentStep === 'design' ? 'text-white' : 'text-zinc-500'}`}>
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center border ${currentStep === 'design' ? 'border-white bg-white/10' : 'border-zinc-700'
+          <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border ${currentStep === 'design' ? 'border-white bg-white/10' : 'border-zinc-700'
             }`}>1</div>
-          <span className="ml-2 text-sm font-medium">Design</span>
+          <span className="ml-1 sm:ml-2 text-xs sm:text-sm font-medium">Design</span>
         </div>
-        <div className="w-12 h-px bg-zinc-800" />
+        <div className="lg:w-4 w-2 sm:w-8 h-px bg-zinc-800" />
         <div className={`flex items-center ${currentStep === 'tryon' ? 'text-white' : 'text-zinc-500'}`}>
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center border ${currentStep === 'tryon' ? 'border-white bg-white/10' : 'border-zinc-700'
+          <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border ${currentStep === 'tryon' ? 'border-white bg-white/10' : 'border-zinc-700'
             }`}>2</div>
-          <span className="ml-2 text-sm font-medium">Try On</span>
+          <span className="ml-1 sm:ml-2 text-xs sm:text-sm font-medium">Try On</span>
         </div>
       </div>
 
-      <div className='flex gap-6 max-w-[1800px] mx-auto h-[calc(100vh-32px)] pt-20'>
+      <div className='flex flex-col lg:flex-row gap-6 max-w-[1800px] mx-auto h-[calc(100vh-90px)] pt-16 max-sm:pt-12'>
         {/* Left Panel - Design Controls */}
-        <div className='w-1/4 bg-zinc-900/50 rounded-xl border border-zinc-800 backdrop-blur-sm'>
-          <div className='h-full overflow-y-auto scrollbar-hide p-5'>
+        <div className='w-full lg:w-1/4 bg-zinc-900/50 rounded-xl border border-zinc-800 backdrop-blur-sm'>
+          <div className='h-full overflow-y-auto scrollbar-hide p-3 md:p-5'>
             <div className='space-y-5'>
               {/* Header */}
               <div>
@@ -932,14 +930,14 @@ function Generate() {
                       <img
                         src={modelImage.preview}
                         alt="Uploaded model"
-                        className='w-full h-[calc(100vh-450px)] object-cover'
+                        className='w-full h-[200px] md:h-[calc(100vh-450px)] object-contain'
                       />
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                         <p className="text-white text-sm">Click to change image</p>
                       </div>
                     </div>
                   ) : (
-                    <div className="h-[calc(100vh-450px)] flex flex-col items-center justify-center gap-3 bg-zinc-900/50">
+                    <div className="h-[200px] md:h-[calc(100vh-450px)] flex flex-col items-center justify-center gap-3 bg-zinc-900/50">
                       <div className="w-16 h-16 rounded-full bg-zinc-800/50 flex items-center justify-center">
                         <Upload className="w-8 h-8 text-zinc-400" />
                       </div>
@@ -960,7 +958,7 @@ function Generate() {
                 onClick={() => setShowModelSelector(true)}
               >
                 <User className="w-4 h-4 mr-2" />
-                Select From Pre-existing Models
+                <p className='flex' ><span className="hidden sm:block">Select From </span>Pre-existing Models</p>
               </Button>
 
               {/* Model Selector Modal */}
@@ -997,7 +995,7 @@ function Generate() {
                       </div>
 
                       {/* Models Grid */}
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {PRE_EXISTING_MODELS[selectedGender].map((model) => (
                           <div
                             key={model.id}
@@ -1227,7 +1225,7 @@ function Generate() {
 
         {/* Center Panel - Preview */}
         <div className='flex-1 bg-zinc-900/30 rounded-xl border border-zinc-800 backdrop-blur-sm'>
-          <div className='h-full p-6 flex flex-col'>
+          <div className='h-full p-2 md:p-4 flex flex-col'>
             {generatedDesign ? (
               <div className='w-full h-full flex flex-col items-center'>
                 {/* Preview Header */}
@@ -1236,10 +1234,10 @@ function Generate() {
                   <p className='text-sm text-zinc-400'>Generated design preview and details</p>
                 </div>
 
-                {/* Preview Grid - Reduced size */}
-                <div className='w-full flex-1 grid grid-cols-3 gap-4 min-h-0 h-[calc(100vh-250px)]'>
+                {/* Preview Grid - Responsive */}
+                <div className='w-full flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-0 h-[calc(100vh-250px)]'>
                   {/* Main Preview */}
-                  <div className='col-span-2 h-full'>
+                  <div className='col-span-1 md:col-span-2 h-full'>
                     <div className='relative w-full h-full rounded-lg overflow-hidden border border-zinc-800 group'>
                       <div className='w-full h-full flex items-center justify-center bg-zinc-900/50'>
                         <img
@@ -1252,7 +1250,7 @@ function Generate() {
                     </div>
                   </div>
 
-                  {/* Side Details - Adjusted for smaller size */}
+                  {/* Side Details - Responsive */}
                   <div className='space-y-3 flex flex-col h-full'>
                     {/* Thumbnail */}
                     <div className='relative aspect-square rounded-lg overflow-hidden border border-zinc-800 group'>
@@ -1296,7 +1294,7 @@ function Generate() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className='flex gap-4 justify-center mt-4'>
+                <div className='flex flex-col sm:flex-row gap-4 justify-center mt-6'>
                   <Button
                     className="bg-white hover:bg-zinc-200 text-black px-6 py-2 text-sm font-medium transition-all duration-300"
                     onClick={() => setCurrentStep('tryon')}
@@ -1345,7 +1343,7 @@ function Generate() {
                     </div>
                   </div>
 
-                  <div className='grid grid-cols-3 gap-4'>
+                  <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                     {/* Generate Option */}
                     <button
                       onClick={() => handleGenerateDesign()}
@@ -1394,7 +1392,7 @@ function Generate() {
         </div>
 
         {/* Right Panel - Wardrobe */}
-        <div className='w-1/5 bg-zinc-900/50 rounded-xl border border-zinc-800 backdrop-blur-sm flex flex-col'>
+        <div className='w-full lg:w-1/5 bg-zinc-900/50 rounded-xl border border-zinc-800 backdrop-blur-sm flex flex-col'>
           {/* Category Selection */}
           <div className='p-4 border-b border-zinc-800'>
             <div className='flex flex-col gap-2'>
@@ -1418,7 +1416,7 @@ function Generate() {
 
           {/* Garments Grid */}
           <div className='flex-1 overflow-y-auto scrollbar-hide p-4'>
-            <div className='grid grid-cols-2 gap-3'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3'>
               {wardrobe[promptData.category]?.map((item) => (
                 <div
                   key={item.id}
