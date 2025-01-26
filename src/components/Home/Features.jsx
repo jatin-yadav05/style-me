@@ -1,49 +1,150 @@
 import React from 'react'
-import {checkbg} from '../../utils/index'
+import { checkbg } from '../../utils/index'
 import Prompt from './Prompt.jsx'
 import Fabric from './Fabric.jsx'
 import GenderSelection from './GenderSelection.jsx'
 import OwnModal from './OwnModal.jsx'
-
-
+import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const Features = () => {
-  return (
-    <>
-    <section className='relative border'>
+    const [headingRef, setHeadingRef] = useState(null);
 
-    {/* <div className='h-[30vh]   absolute top-0  w-[40vw] overflow-hidden' >
-          <img src={checkbg} className='h-[600%] brightness-150 w-full object-cover'></img>
-    </div> */}
+    const [genderFeature, setGenderFeature] = useState(true);
+    const [fabricFeature, setFabricFeature] = useState(false);
+    const [visionFeature, setVisionFeature] = useState(false);
+    const [modelFeature, setModelFeature] = useState(false);
 
-    <h2 className='text-center text-6xl my-10 w-full '>Features</h2>
+    const fadeInVariants = {
+        initial: { opacity: 0, x: 50 },
+        animate: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: -50 }
+    };
 
-        <div className='w-full h-[80vh]  flex items-center gap-10'>
+    const transition = {
+        type: "tween",
+        ease: "easeInOut",
+        duration: 0.7
+    };
 
+    return (
+        <>
+            <section className='relative border'>
+                <h2 className='text-center text-6xl my-10 w-full' ref={headingRef}>Features</h2>
 
-            <div className='w-[50%] h-full text-3xl flex flex-col'>
+                <div className='w-full h-[80vh] flex items-center gap-10'>
+                    <div className='w-[50%] h-full text-3xl flex flex-col'>
+                        <ul className='h-full'>
+                            <li 
+                                onMouseEnter={() => {
+                                    setGenderFeature(true)
+                                    setFabricFeature(false)
+                                    setModelFeature(false)
+                                    setVisionFeature(false)
+                                }}
+                                className='py-10 border-b border-grey hover:bg-default-grey text-center transition-colors duration-300'
+                            >
+                                Gender Selection
+                            </li>
 
-                <ul className=''>
-                    <li className='py-10 border-b border-t border-grey hover:bg-default-grey text-center'>Design with Your Vision</li>
-                    <li className='py-10 border-b border-grey hover:bg-default-grey text-center  '>Fabric, Size & Color Customization</li>
-                    <li className='py-10 border-b border-grey hover:bg-default-grey text-center'>Upload Your Own Models</li>
-                    <li className='py-10 border-b border-grey hover:bg-default-grey text-center'>Gender Selection</li>
-                </ul>
-               
-            </div>
+                            <li 
+                                onMouseEnter={() => {
+                                    setFabricFeature(true)
+                                    setGenderFeature(false)
+                                    setModelFeature(false)
+                                    setVisionFeature(false)
+                                }}
+                                className='py-10 border-b border-grey hover:bg-default-grey text-center transition-colors duration-300'
+                            >
+                                Fabric, Size & Color Customization
+                            </li>
 
-            <div className='w-[50%] h-full'>
-                {/* <Prompt/> */}
-                {/* <Fabric/> */}
-                <GenderSelection/>
-                {/* <OwnModal/> */}
-            </div>
-        
-        </div>
+                            <li 
+                                onMouseEnter={() => {
+                                    setVisionFeature(true)
+                                    setFabricFeature(false)
+                                    setGenderFeature(false)
+                                    setModelFeature(false)
+                                }}
+                                className='py-10 border-b border-t border-grey hover:bg-default-grey text-center transition-colors duration-300'
+                            >
+                                Design with Your Vision
+                            </li>
 
-    </section>
-    </>
-  )
+                            <li 
+                                onMouseEnter={() => {
+                                    setModelFeature(true)
+                                    setVisionFeature(false)
+                                    setFabricFeature(false)
+                                    setGenderFeature(false)
+                                }}
+                                className='py-10 border-b border-grey hover:bg-default-grey text-center transition-colors duration-300'
+                            >
+                                Upload Your Own Models
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className='w-[50%] h-full relative flex items-center justify-center'>
+                        <AnimatePresence mode="wait">
+                            {genderFeature && (
+                                <motion.div
+                                    key="gender"
+                                    variants={fadeInVariants}
+                                    initial="initial"
+                                    animate="animate"
+                                    exit="exit"
+                                    transition={transition}
+                                    className="absolute w-full h-full flex items-center justify-center"
+                                >
+                                    <GenderSelection />
+                                </motion.div>
+                            )}
+                            {fabricFeature && (
+                                <motion.div
+                                    key="fabric"
+                                    variants={fadeInVariants}
+                                    initial="initial"
+                                    animate="animate"
+                                    exit="exit"
+                                    transition={transition}
+                                    className="absolute w-full h-full flex items-center justify-center"
+                                >
+                                    <Fabric />
+                                </motion.div>
+                            )}
+                            {visionFeature && (
+                                <motion.div
+                                    key="vision"
+                                    variants={fadeInVariants}
+                                    initial="initial"
+                                    animate="animate"
+                                    exit="exit"
+                                    transition={transition}
+                                    className="absolute w-full h-full flex items-center justify-center"
+                                >
+                                    <Prompt />
+                                </motion.div>
+                            )}
+                            {modelFeature && (
+                                <motion.div
+                                    key="model"
+                                    variants={fadeInVariants}
+                                    initial="initial"
+                                    animate="animate"
+                                    exit="exit"
+                                    transition={transition}
+                                    className="absolute w-full h-full flex items-center justify-center"
+                                >
+                                    <OwnModal />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </div>
+            </section>
+        </>
+    )
 }
 
-export default Features;
+export default Features

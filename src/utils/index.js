@@ -23,5 +23,8 @@ import application3 from '../assets/images/home/application3.jpg';
 import application4 from '../assets/images/home/application4.jpg';
 import input from '../assets/images/home/input.jpg';
 import output from '../assets/images/home/output.png';
+import desktopView from '../assets/images/home/Desktop-view.jpg'
+import mobileView from '../assets/images/home/Mobile-view.jpg'
+import tabletView from '../assets/images/home/Tablet-view.jpg'
 
-export {checkbg, NorthEastArrow, firstImage, ownVision, fabricImg, maleModal, femaleModel, testimonialbg, manProfessional, femaleProfessional, doubleSideArrow, uploadModal, selectCategory, processing, givePrompt, garment, wardrobe, logo, chooseModal, application1, application2, application3, application4, input, output};
+export {checkbg, NorthEastArrow, firstImage, ownVision, fabricImg, maleModal, femaleModel, testimonialbg, manProfessional, femaleProfessional, doubleSideArrow, uploadModal, selectCategory, processing, givePrompt, garment, wardrobe, logo, chooseModal, application1, application2, application3, application4, input, output, desktopView, mobileView, tabletView};
