@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { firstImage, checkbg, NorthEastArrow } from '../../utils/index.js'
 import Typed from 'typed.js'
+import {Link} from 'react-router-dom';
 
 const Hero = () => {
   const typedRef = useRef(null);
@@ -23,7 +24,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className='flex flex-col lg:flex-row max-w-full min-h-screen relative overflow-hidden'>
+    <section className='flex flex-col lg:flex-row max-w-full max-h-screen relative overflow-hidden'>
       {/* Ambient Background */}
       <div className='absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black opacity-50'></div>
       
@@ -55,17 +56,15 @@ const Hero = () => {
         </div>
 
         {/* CTA Button */}
-        <div className='relative lg:left-[15%] z-20'>
-          <button className='group border-[1.5px] flex items-center gap-3 border-zinc-700/80 px-6 lg:px-8 py-4 lg:py-5 rounded-full font-semibold hover:border-white/80 hover:bg-white/95 hover:text-black transition-all duration-300 backdrop-blur-sm transform -translate-y-4'>
+        <div className='relative lg:left-[15%] z-20 '>
+          <Link to="/login"><button className='group  border-[1.5px] flex items-center gap-3 border-zinc-700/80 px-6 lg:px-8 py-4 lg:py-5 rounded-full font-semibold hover:border-white/80 hover:bg-white/95 hover:text-black transition-all duration-300 backdrop-blur-sm transform -translate-y-4'>
             <span className='text-zinc-200 group-hover:text-black transition-colors text-base'>
               Get Started
             </span>
-            <img
-              src={NorthEastArrow}
-              alt="Arrow"
-              className='w-4 h-4 opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5'
-            />
-          </button>
+            <svg alt="Arrow"
+              className='w-4 h-4  opacity-70 group-hover:opacity-100 group-hover:fill-black transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
+              </button>
+          </Link>
         </div>
       </div>
 

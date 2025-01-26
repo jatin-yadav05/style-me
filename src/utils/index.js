@@ -21,5 +21,7 @@ import application1 from '../assets/images/home/application1.jpeg';
 import application2 from '../assets/images/home/application2.jpg';
 import application3 from '../assets/images/home/application3.jpg';
 import application4 from '../assets/images/home/application4.jpg';
+import input from '../assets/images/home/input.jpg';
+import output from '../assets/images/home/output.png';
 
-export {checkbg, NorthEastArrow, firstImage, ownVision, fabricImg, maleModal, femaleModel, testimonialbg, manProfessional, femaleProfessional, doubleSideArrow, uploadModal, selectCategory, processing, givePrompt, garment, wardrobe, logo, chooseModal, application1, application2, application3, application4};
+export {checkbg, NorthEastArrow, firstImage, ownVision, fabricImg, maleModal, femaleModel, testimonialbg, manProfessional, femaleProfessional, doubleSideArrow, uploadModal, selectCategory, processing, givePrompt, garment, wardrobe, logo, chooseModal, application1, application2, application3, application4, input, output};
