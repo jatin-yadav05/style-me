@@ -7,6 +7,7 @@ import Planning from './components/planning'
 import SignIn from "./components/SignIn"
 
 function App() {
+
   useEffect(() => {
     document.documentElement.classList.add('dark')
   }, [])
