@@ -11,17 +11,28 @@ import Footer from './Footer'
 
 function Home() {
     return (
-        <div className='w-full bg-black min-h-screen overflow-x-hidden'>
-            <main className='flex flex-col'>
+        // <div></div>
+        <>
+            <div className='w-full bg-black h-content max-w-full '>
+
+
+                
                 <Hero />
                 <Features />
-                <Steps />
-                <WhyStyleMe />
-                <Customer />
-                <StyleNow />
-                <Footer />
-            </main>
-        </div>
+
+                <Steps/>
+
+                <WhyStyleMe/>
+                <Customer/>
+
+                <StyleNow/>
+
+                <Footer/> 
+
+            </div>
+
+        </>
+
     )
 }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { firstImage, checkbg, NorthEastArrow } from '../../utils/index.js'
 import Typed from 'typed.js'
+import {Link} from 'react-router-dom';
 
 const Hero = () => {
   const typedRef = useRef(null);
@@ -60,12 +61,10 @@ const Hero = () => {
             <span className='text-zinc-200 group-hover:text-black transition-colors text-base'>
               Get Started
             </span>
-            <img
-              src={NorthEastArrow}
-              alt="Arrow"
-              className='w-4 h-4 opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5'
-            />
-          </button>
+            <svg alt="Arrow"
+              className='w-4 h-4  opacity-70 group-hover:opacity-100 group-hover:fill-black transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
+              </button>
+          </Link>
         </div>
       </div>
 
